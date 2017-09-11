@@ -5,7 +5,28 @@
     <h:head></h:head>
 
     <h:body>
-        Shopping kart: under construction!
+        <p:panelGrid style="margin-top:20px">
+            <p:row>
+                <p:column colspan="7">Ordenes</p:column>
+            </p:row>
+            <p:row>
+                <p:column colspan="2">No. Orden</p:column>
+                <p:column colspan="2">No. Items</p:column>
+            </p:row>
+            <p:row>
+                <p:column colspan="2">1</p:column>
+                <p:column colspan="2">
+                    <h:form>
+                        <p:panelMenu style="width:300px">
+                            <p:submenu label="4">
+                                <p:menuitem value="Plato 1"/>
+                                <p:menuitem value="Plato 2"/>
+                            </p:submenu>       
+                        </p:panelMenu>
+                    </h:form>
+                </p:column>                
+            </p:row>       
+        </p:panelGrid>
     </h:body>
 
 </html>

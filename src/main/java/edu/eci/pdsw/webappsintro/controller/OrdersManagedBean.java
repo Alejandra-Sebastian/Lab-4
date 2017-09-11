@@ -17,16 +17,38 @@
 package edu.eci.pdsw.webappsintro.controller;
 
 import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.*;
 
 /**
  *
  * @author hcadavid
  */
+
+@ManagedBean(name = "beanEstadoOrdenes")
+@SessionScoped
 public class OrdersManagedBean {
+        
+    private int numElementos;
+    private int numOrden;
     
+    public OrdersManagedBean() {
+        numElementos = 4;
+        numOrden = 1;
+    }
     
+    public void setNumElementos(int elem) {
+        numElementos = elem;
+    }
     
+    public int getNumElementos() {
+        return numElementos;
+    }
     
+    public void setNumOrden(int orden) {
+        numOrden = orden;
+    }
+    
+    public int getNumOrden() {
+        return numOrden;
+    }    
 }
