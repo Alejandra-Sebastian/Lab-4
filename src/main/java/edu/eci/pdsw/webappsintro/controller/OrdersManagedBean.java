@@ -16,6 +16,8 @@
  */
 package edu.eci.pdsw.webappsintro.controller;
 
+import edu.eci.pdsw.webappsintro.model.*;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.*;
 
@@ -27,13 +29,13 @@ import javax.faces.bean.*;
 @ManagedBean(name = "beanEstadoOrdenes")
 @SessionScoped
 public class OrdersManagedBean {
-        
+    private ArrayList<Orden> ordenes;
+    private ArrayList<ItemOrden> Elementos;
     private int numElementos;
     private int numOrden;
     
     public OrdersManagedBean() {
-        numElementos = 4;
-        numOrden = 1;
+        ordenes = new ArrayList<Orden>();
     }
     
     public void setNumElementos(int elem) {
@@ -50,5 +52,21 @@ public class OrdersManagedBean {
     
     public int getNumOrden() {
         return numOrden;
-    }    
+    }
+    
+    public ArrayList<Orden> getOrdenes() {
+        return ordenes;
+    }
+    
+    public void setOrdenes(Orden orden) {
+        ordenes.add(orden);
+    }
+    
+    public List<ItemOrden> getElementos(int n) {
+        return ordenes.get(n).getItemsOrden();
+    }
+    
+    public void setElementos(int n, ItemOrden p) {
+        ordenes.get(n).agregarItemOrden(p);
+    }
 }

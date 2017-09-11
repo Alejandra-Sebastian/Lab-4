@@ -5,28 +5,14 @@
     <h:head></h:head>
 
     <h:body>
-        <p:panelGrid style="margin-top:20px">
-            <p:row>
-                <p:column colspan="7">Ordenes</p:column>
-            </p:row>
-            <p:row>
-                <p:column colspan="2">No. Orden</p:column>
-                <p:column colspan="2">No. Items</p:column>
-            </p:row>
-            <p:row>
-                <p:column colspan="2">1</p:column>
-                <p:column colspan="2">
-                    <h:form>
-                        <p:panelMenu style="width:300px">
-                            <p:submenu label="4">
-                                <p:menuitem value="Plato 1"/>
-                                <p:menuitem value="Plato 2"/>
-                            </p:submenu>       
-                        </p:panelMenu>
-                    </h:form>
-                </p:column>                
-            </p:row>       
-        </p:panelGrid>
+        <p:dataTable var="items" value="#{beanEstadoOrdenes.ordenes}">
+            <p:column headerText="No. Ordenes">
+                <h:outputText value="#{items.id}" />
+            </p:column>
+            <p:column headerText="No. Items">
+                <h:outputText value="#{beanEstadoOrdenes}" />
+            </p:column>
+        </p:dataTable>
     </h:body>
 
 </html>
