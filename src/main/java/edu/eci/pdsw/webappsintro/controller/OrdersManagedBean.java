@@ -38,9 +38,9 @@ public class OrdersManagedBean {
     private int numOrden;
     private Orden selectedOrden;
     private boolean rendered=false;
-    private String nombre;
-    private int precio;
-    private String tipo;
+    private String nombre="";
+    private int precio=0;
+    private String tipo="";
     
     public OrdersManagedBean() {
         ordenes = new ArrayList<Orden>();
@@ -105,14 +105,13 @@ public class OrdersManagedBean {
         return selectedOrden.getItemsOrden();
     }
     
-    public void agregarItem(String tipo, String nombre, String precio){
-        int pr = Integer.parseInt(precio);
+    public void agregarItem(){
         if (tipo.equalsIgnoreCase("bebida")){
-            ItemOrden io= new Bebida(nombre,pr, 100);
+            ItemOrden io= new Bebida(nombre,precio, 100);
             selectedOrden.agregarItemOrden(io);
         }
         else{
-            ItemOrden io= new Plato(nombre,pr);
+            ItemOrden io= new Plato(nombre,precio);
             selectedOrden.agregarItemOrden(io);
         }
     }
@@ -122,6 +121,7 @@ public class OrdersManagedBean {
     }
     
     public void setTipo(String t) {
+        System.out.println("tipo"+tipo);
         tipo = t;
     }
     
@@ -130,6 +130,7 @@ public class OrdersManagedBean {
     }
     
     public void setNombre(String n) {
+        System.out.println("nombre"+nombre);
         nombre = n;
     }
     
@@ -138,6 +139,7 @@ public class OrdersManagedBean {
     }
     
     public void setPrecio(int p) {
+        System.out.println("precio"+precio);
         precio = p;
     }
 }

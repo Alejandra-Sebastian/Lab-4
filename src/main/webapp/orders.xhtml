@@ -21,7 +21,6 @@
         <p:commandButton value="Nueva Orden" update="Form1" actionListener="#{beanEstadoOrdenes.agregarOrden()}"/>
         <p:commandButton value="Consultar Orden" update="form" actionListener="#{beanEstadoOrdenes.detalles()}"/>
         <h:form id="form">
-            <p:growl id="msgs" showDetail="true" />
             <p:dataTable var="SelOr" value="#{beanEstadoOrdenes.selectedOrden.itemsOrden}" >
                 <p:column headerText="Items">
                     <h:outputText value="#{SelOr.nombre}" />
@@ -33,14 +32,16 @@
                     <h:outputText value="#{beanEstadoOrdenes.selectedOrden.total}"/>
                 </p:column>
             </p:dataTable>
+            <h:form id="form3">
+                <h:outputText value="Tipo: "/>
+                <p:inputText value="#{beanEstadoOrdenes.tipo}"/>
+                <h:outputText value="Nombre "/>
+                <p:inputText value="#{beanEstadoOrdenes.nombre}"/>
+                <h:outputText value="Precio "/>
+                <p:inputText value="#{beanEstadoOrdenes.precio}"/>
+                <p:commandButton value="Agregar Item" update="form3" actionListener="#{beanEstadoOrdenes.agregarItem()}" />
+            </h:form>
         </h:form>
-        <h:outputText value="Tipo: "/>
-        <p:inputText id="output1" disabled="false" value="#{beanEstadoOrdenes.tipo}"/>
-        <h:outputText value="Nombre "/>
-        <p:inputText id="output2" disabled="false" value="#{beanEstadoOrdenes.nombre}"/>
-        <h:outputText value="Precio "/>
-        <p:inputText binding="#{output3}"/>
-        <p:commandButton value="Agregar Item" update="form" actionListener="#{beanEstadoOrdenes.agregarItem(output1.value , output2.value,output3.value)}" />
         
     </h:body>
     
