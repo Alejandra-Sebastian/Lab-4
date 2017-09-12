@@ -19,7 +19,11 @@ package edu.eci.pdsw.webappsintro.controller;
 import edu.eci.pdsw.webappsintro.model.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
+import javax.faces.context.FacesContext;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 
 /**
  *
@@ -33,9 +37,17 @@ public class OrdersManagedBean {
     private ArrayList<Orden> ordenes;
     private int numOrden;
     private Orden selectedOrden;
+    private boolean rendered=false;
+    private String nombre;
+    private int precio;
+    private String tipo;
     
     public OrdersManagedBean() {
         ordenes = new ArrayList<Orden>();
+//        Orden oo = new Orden();
+//        ordenes.add(oo);
+//        oo.agregarItemOrden(new Plato("Platico", 5452));
+//        oo.agregarItemOrden(new Plato("Platico2", 5452));
     }
         
     public void setNumOrden(int orden) {
@@ -66,6 +78,7 @@ public class OrdersManagedBean {
         Orden o = new Orden();
         o.setId(ordenes.size()+1);
         ordenes.add(o);
+        System.out.println(ordenes.size()+1);
     }
     
     public Orden getSelectedOrden() {
@@ -74,5 +87,57 @@ public class OrdersManagedBean {
     
     public void setSelectedOrden(Orden selor) {
         selectedOrden = selor;
+    }
+    
+    public List<ItemOrden> getElementosSelOr(Orden selor) {
+        return selor.getItemsOrden();
+    }
+    
+    public void setRendered(boolean r){
+        rendered = r;
+    }
+    
+    public boolean getRendered(){
+        return rendered;
+    }
+    
+    public List<ItemOrden> detalles(){
+        return selectedOrden.getItemsOrden();
+    }
+    
+    public void agregarItem(String tipo, String nombre, String precio){
+        int pr = Integer.parseInt(precio);
+        if (tipo.equalsIgnoreCase("bebida")){
+            ItemOrden io= new Bebida(nombre,pr, 100);
+            selectedOrden.agregarItemOrden(io);
+        }
+        else{
+            ItemOrden io= new Plato(nombre,pr);
+            selectedOrden.agregarItemOrden(io);
+        }
+    }
+    
+    public String getTipo() {
+        return tipo;
+    }
+    
+    public void setTipo(String t) {
+        tipo = t;
+    }
+    
+    public String getNombre() {
+        return nombre;
+    }
+    
+    public void setNombre(String n) {
+        nombre = n;
+    }
+    
+    public int getPrecio() {
+        return precio;
+    }
+    
+    public void setPrecio(int p) {
+        precio = p;
     }
 }

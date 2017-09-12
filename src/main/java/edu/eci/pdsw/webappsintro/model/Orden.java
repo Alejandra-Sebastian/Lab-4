@@ -8,6 +8,7 @@ public class Orden {
 	List<ItemOrden> itemsOrden;
         int id;
         int numElementos;
+        int total;
 
 	public Orden() {
 		itemsOrden=new LinkedList<>();
@@ -40,6 +41,18 @@ public class Orden {
         
         public void setNumElementos(int numElem) {
             numElementos = numElem;
+        }
+        
+        public int getTotal(){
+            int total=0;
+            for (ItemOrden io: itemsOrden){
+                total+=io.getPrecio();
+            }
+            return total;
+        }
+        
+        public void setTotal(int total){
+            this.total = total;
         }
 	
 }

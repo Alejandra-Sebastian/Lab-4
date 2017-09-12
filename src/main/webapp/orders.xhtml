@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3c.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      
     <h:head></h:head>
 
     <h:body>
         <h:form id="Form1">
-            <p:dataTable var="items" value="#{beanEstadoOrdenes.ordenes}" selectionMode="single" selection="#{beanEstadoOrdenes.selectedOrden}" rowKey="items.id">
+            <p:dataTable id="ff" var="items" value="#{beanEstadoOrdenes.ordenes}" selectionMode="single" selection="#{beanEstadoOrdenes.selectedOrden}" rowKey="#{items.id}" style="margin-bottom:0">
                 <p:column headerText="No. Ordenes">
                     <h:outputText value="#{items.id}" />
                 </p:column>
@@ -14,8 +17,34 @@
                     <h:outputText value="#{items.numElementos}" />
                 </p:column>
             </p:dataTable>
-            <p:commandButton value="Nueva Orden" update="Form1" actionListener="#{beanEstadoOrdenes.agregarOrden()}"/>
         </h:form>
+        <p:commandButton value="Nueva Orden" update="Form1" actionListener="#{beanEstadoOrdenes.agregarOrden()}"/>
+        <p:commandButton value="Consultar Orden" update="form" actionListener="#{beanEstadoOrdenes.detalles()}"/>
+        <h:form id="form">
+            <p:growl id="msgs" showDetail="true" />
+            <p:dataTable var="SelOr" value="#{beanEstadoOrdenes.selectedOrden.itemsOrden}" >
+                <p:column headerText="Items">
+                    <h:outputText value="#{SelOr.nombre}" />
+                </p:column>
+                <p:column headerText="Precio">
+                    <h:outputText value="#{SelOr.precio}" />
+                </p:column>
+                <p:column headerText="Total">
+                    <h:outputText value="#{beanEstadoOrdenes.selectedOrden.total}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        <h:outputText value="Tipo: "/>
+        <p:inputText id="output1" disabled="false" value="#{beanEstadoOrdenes.tipo}"/>
+        <h:outputText value="Nombre "/>
+        <p:inputText id="output2" disabled="false" value="#{beanEstadoOrdenes.nombre}"/>
+        <h:outputText value="Precio "/>
+        <p:inputText binding="#{output3}"/>
+        <p:commandButton value="Agregar Item" update="form" actionListener="#{beanEstadoOrdenes.agregarItem(output1.value , output2.value,output3.value)}" />
+        
     </h:body>
+    
+    
+    
 
 </html>
