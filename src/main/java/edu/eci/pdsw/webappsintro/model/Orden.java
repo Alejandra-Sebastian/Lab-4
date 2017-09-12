@@ -7,6 +7,7 @@ public class Orden {
 
 	List<ItemOrden> itemsOrden;
         int id;
+        int numElementos;
 
 	public Orden() {
 		itemsOrden=new LinkedList<>();
@@ -31,6 +32,14 @@ public class Orden {
         
         public void setId(int id) {
             this.id = id;
+        }
+        
+        public int getNumElementos() {
+            return itemsOrden.size();
+        }
+        
+        public void setNumElementos(int numElem) {
+            numElementos = numElem;
         }
 	
 }

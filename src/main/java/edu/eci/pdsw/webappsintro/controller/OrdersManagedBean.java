@@ -29,23 +29,15 @@ import javax.faces.bean.*;
 @ManagedBean(name = "beanEstadoOrdenes")
 @SessionScoped
 public class OrdersManagedBean {
+    
     private ArrayList<Orden> ordenes;
-    private ArrayList<ItemOrden> Elementos;
-    private int numElementos;
     private int numOrden;
+    private Orden selectedOrden;
     
     public OrdersManagedBean() {
         ordenes = new ArrayList<Orden>();
     }
-    
-    public void setNumElementos(int elem) {
-        numElementos = elem;
-    }
-    
-    public int getNumElementos() {
-        return numElementos;
-    }
-    
+        
     public void setNumOrden(int orden) {
         numOrden = orden;
     }
@@ -68,5 +60,19 @@ public class OrdersManagedBean {
     
     public void setElementos(int n, ItemOrden p) {
         ordenes.get(n).agregarItemOrden(p);
+    }
+    
+    public void agregarOrden() {
+        Orden o = new Orden();
+        o.setId(ordenes.size()+1);
+        ordenes.add(o);
+    }
+    
+    public Orden getSelectedOrden() {
+        return selectedOrden;
+    }
+    
+    public void setSelectedOrden(Orden selor) {
+        selectedOrden = selor;
     }
 }

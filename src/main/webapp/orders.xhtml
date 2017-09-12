@@ -5,14 +5,17 @@
     <h:head></h:head>
 
     <h:body>
-        <p:dataTable var="items" value="#{beanEstadoOrdenes.ordenes}">
-            <p:column headerText="No. Ordenes">
-                <h:outputText value="#{items.id}" />
-            </p:column>
-            <p:column headerText="No. Items">
-                <h:outputText value="#{beanEstadoOrdenes}" />
-            </p:column>
-        </p:dataTable>
+        <h:form id="Form1">
+            <p:dataTable var="items" value="#{beanEstadoOrdenes.ordenes}" selectionMode="single" selection="#{beanEstadoOrdenes.selectedOrden}" rowKey="items.id">
+                <p:column headerText="No. Ordenes">
+                    <h:outputText value="#{items.id}" />
+                </p:column>
+                <p:column headerText="No. Items">
+                    <h:outputText value="#{items.numElementos}" />
+                </p:column>
+            </p:dataTable>
+            <p:commandButton value="Nueva Orden" update="Form1" actionListener="#{beanEstadoOrdenes.agregarOrden()}"/>
+        </h:form>
     </h:body>
 
 </html>
